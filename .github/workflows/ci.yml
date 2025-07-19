@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Run Linter
+        uses: golangci/golangci-lint-action@v7
+        with:
+          version: latest
+          working-directory: ./
+          args: --timeout 3m
+
+      - name: Run Tests
+        run: go test -covermode=atomic -coverpkg=./... -coverprofile=coverage.out -v ./...
