@@ -96,20 +96,8 @@ func TestNewLogger(t *testing.T) {
 			// Create a buffer to capture output
 			var buf bytes.Buffer
 
-			// Create logger with buffer as output
-			opts := &slog.HandlerOptions{
-				AddSource: tt.config.AddSource,
-				Level:     tt.config.Level,
-			}
-
-			var handler slog.Handler
-			if tt.config.Format == "json" {
-				handler = slog.NewJSONHandler(&buf, opts)
-			} else {
-				handler = slog.NewTextHandler(&buf, opts)
-			}
-
-			logger := slog.New(handler)
+			// Use the New function to create the logger
+			logger := New(tt.config, &buf)
 			tt.logFunc(logger, "test message")
 
 			output := buf.String()
