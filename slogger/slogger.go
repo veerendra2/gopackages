@@ -5,6 +5,8 @@ import (
 	"os"
 )
 
+const formatJSON = "json"
+
 // These tags are used by kong CLI argument parser.
 type Config struct {
 	Format    string     `env:"FORMAT" enum:"console,json" default:"json" help:"Set the output format of the logs. Must be \"console\" or \"json\"."`
@@ -19,7 +21,7 @@ func New(config Config) *slog.Logger {
 	}
 
 	var handler slog.Handler
-	if config.Format == "json" {
+	if config.Format == formatJSON {
 		handler = slog.NewJSONHandler(os.Stdout, opts)
 	} else {
 		handler = slog.NewTextHandler(os.Stdout, opts)
