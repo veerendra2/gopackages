@@ -5,7 +5,10 @@ import (
 	"os"
 )
 
-const formatJSON = "json"
+const (
+	formatJSON    = "json"
+	formatConsole = "console"
+)
 
 // These tags are used by kong CLI argument parser.
 type Config struct {
