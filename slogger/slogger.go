@@ -3,11 +3,7 @@ package slogger
 import (
 	"log/slog"
 	"os"
-)
-
-const (
-	formatJSON    = "json"
-	formatConsole = "console"
+	"time"
 )
 
 // These tags are used by kong CLI argument parser.
@@ -21,10 +17,22 @@ func New(config Config) *slog.Logger {
 	opts := &slog.HandlerOptions{
 		AddSource: config.AddSource,
 		Level:     config.Level,
+		ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
+			if a.Key == "time" {
+				// Format time as RFC3339
+				if t, ok := a.Value.Any().(time.Time); ok {
+					return slog.Attr{
+						Key:   a.Key,
+						Value: slog.StringValue(t.Format(time.RFC3339)),
+					}
+				}
+			}
+			return a
+		},
 	}
 
 	var handler slog.Handler
-	if config.Format == formatJSON {
+	if config.Format == "json" {
 		handler = slog.NewJSONHandler(os.Stdout, opts)
 	} else {
 		handler = slog.NewTextHandler(os.Stdout, opts)
