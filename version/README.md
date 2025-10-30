@@ -34,10 +34,10 @@ REVISION  ?= $(shell git rev-parse HEAD)
 VERSION   ?= $(shell git describe --tags)
 
 go build -ldflags "\
-  -X github.com/yourorg/yourrepo/pkg/version.Version={{.VERSION}} \
-  -X github.com/yourorg/yourrepo/pkg/version.Revision={{.REVISION}} \
-  -X github.com/yourorg/yourrepo/pkg/version.Branch={{.BRANCH}} \
-  -X github.com/yourorg/yourrepo/pkg/version.BuildUser={{.BUILDUSER}} \
-  -X github.com/yourorg/yourrepo/pkg/version.BuildDate={{.BUILDTIME}}" \
+  -X github.com/yourorg/yourrepo/pkg/version.Version=$(VERSION) \
+  -X github.com/yourorg/yourrepo/pkg/version.Revision=$(REVISION) \
+  -X github.com/yourorg/yourrepo/pkg/version.Branch=$(BRANCH) \
+  -X github.com/yourorg/yourrepo/pkg/version.BuildUser=$(BUILDUSER) \
+  -X github.com/yourorg/yourrepo/pkg/version.BuildDate=$(BUILDTIME)" \
   -o ./bin/myapp ./cmd/myapp
 ```
