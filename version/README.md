@@ -24,7 +24,7 @@ func main() {
 }
 ```
 
-Make sure add flags while build in app
+Make sure to add flags while building the app
 
 ```bash
 BRANCH    ?= $(shell git rev-parse --abbrev-ref HEAD)
