@@ -16,8 +16,8 @@ import (
 func main() {
   logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-  logger.Info("Version information", Info())
-  logger.Info("Build context", BuildContext())
+  logger.Info("Version information", version.Info())
+  logger.Info("Build context", version.BuildContext())
 
   // time=2025-10-30T20:58:12.861Z level=INFO msg="Version information" release.version=v1.2.3 release.branch=main release.revision=abc123
   // time=2025-10-30T20:58:12.862Z level=INFO msg="Build context" build.go_version=go1.24.7 build.user=tester build.date=2025-10-30T12:00:00Z
