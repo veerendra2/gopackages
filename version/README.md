@@ -9,7 +9,6 @@ package main
 
 import (
     "log/slog"
-    "os"
 
     "github.com/veerendra2/gopackages/version"
 )
