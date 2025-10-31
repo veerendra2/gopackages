@@ -14,18 +14,20 @@ var (
 	GoVersion = runtime.Version()
 )
 
-func Info() slog.Attr {
-	return slog.Group("release",
+// Info returns slog attributes for application version information.
+func Info() []any {
+	return []any{
 		slog.String("version", Version),
 		slog.String("branch", Branch),
 		slog.String("revision", Revision),
-	)
+	}
 }
 
-func BuildContext() slog.Attr {
-	return slog.Group("build",
+// BuildContext returns slog attributes for build environment details.
+func BuildContext() []any {
+	return []any{
 		slog.String("go_version", GoVersion),
 		slog.String("user", BuildUser),
 		slog.String("date", BuildDate),
-	)
+	}
 }
