@@ -1,7 +1,6 @@
 package version
 
 import (
-	"log/slog"
 	"runtime"
 )
 
@@ -14,20 +13,20 @@ var (
 	GoVersion = runtime.Version()
 )
 
-// Info returns slog attributes for application version information.
+// Info returns key-value pairs for application version information.
 func Info() []any {
 	return []any{
-		slog.String("version", Version),
-		slog.String("branch", Branch),
-		slog.String("revision", Revision),
+		"version", Version,
+		"branch", Branch,
+		"revision", Revision,
 	}
 }
 
-// BuildContext returns slog attributes for build environment details.
+// BuildContext returns key-value pairs for build environment details.
 func BuildContext() []any {
 	return []any{
-		slog.String("go_version", GoVersion),
-		slog.String("user", BuildUser),
-		slog.String("date", BuildDate),
+		"go_version", GoVersion,
+		"user", BuildUser,
+		"date", BuildDate,
 	}
 }
