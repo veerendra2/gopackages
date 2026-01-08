@@ -42,7 +42,7 @@ Flags:
       --log-level=INFO       Set the log level. Must be "DEBUG", "INFO", "WARN" or "ERROR" ($LOG_LEVEL).
       --log-add-source       Whether to add source file and line number to log records ($LOG_ADD_SOURCE).
 
-go run main.go --log.level=debug
+go run main.go --log-level=debug
 {"time":"2025-09-22T12:57:02+02:00","level":"INFO","source":{"function":"main.main","file":"/Users/veerendra/projects/gopackages/main.go","line":19},"msg":"Info log"}
 {"time":"2025-09-22T12:57:02+02:00","level":"WARN","source":{"function":"main.main","file":"/Users/veerendra/projects/gopackages/main.go","line":20},"msg":"Warning log"}
 {"time":"2025-09-22T12:57:02+02:00","level":"DEBUG","source":{"function":"main.main","file":"/Users/veerendra/projects/gopackages/main.go","line":21},"msg":"Debug log"}
