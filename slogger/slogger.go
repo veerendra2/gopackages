@@ -32,10 +32,11 @@ func New(config Config) *slog.Logger {
 	}
 
 	var handler slog.Handler
+
+	handler = slog.NewTextHandler(os.Stdout, opts)
 	if config.Format == "json" {
 		handler = slog.NewJSONHandler(os.Stdout, opts)
 	}
-	handler = slog.NewTextHandler(os.Stdout, opts)
 
 	return slog.New(handler)
 }
